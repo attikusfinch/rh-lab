@@ -14,6 +14,7 @@ Small experimental lab for exploring the Riemann hypothesis through:
 - Mean-square and large-values scans for dyadic blocks
 - Derivative and Sobolev smoothness checks for dyadic blocks
 - High-moment checks for dyadic large-values bounds
+- Uniform-in-Y moment bounds for dyadic blocks
 
 This is not a proof of RH. It is a computational notebook-style project that turns the visual intuition into proof-shaped targets.
 
@@ -48,4 +49,4 @@ tools\rh_viz.exe 10000000 50000 outputs\rh_viz_10m.csv
 python tools\plot_rh_viz.py outputs\rh_viz_10m.csv outputs\rh_viz_10m.png
 ```
 
-See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, `outputs/rh_dyadic_t_refinement.md`, `outputs/rh_dyadic_large_values.md`, `outputs/rh_dyadic_smoothness.md`, and `outputs/rh_dyadic_moments.md` for the full route.
+See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, `outputs/rh_dyadic_t_refinement.md`, `outputs/rh_dyadic_large_values.md`, `outputs/rh_dyadic_smoothness.md`, `outputs/rh_dyadic_moments.md`, and `outputs/rh_uniform_moment_bound.md` for the full route.
