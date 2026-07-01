@@ -72,4 +72,5 @@ python tools\plot_dyadic_t_refine.py outputs\mu_10m.i8 outputs\dyadic_t_refine_2
 python tools\plot_dyadic_large_values.py outputs\mu_10m.i8 outputs\dyadic_large_values_2m.png --output-csv outputs\dyadic_large_values_2m.csv --limit 2000000 --t-max 200 --t-points 801
 python tools\plot_dyadic_smoothness.py outputs\mu_10m.i8 outputs\dyadic_smoothness_2m.png --output-csv outputs\dyadic_smoothness_2m.csv --limit 2000000 --t-max 200 --t-points 801
 python tools\plot_dyadic_moments.py outputs\mu_10m.i8 outputs\dyadic_moments_2m.png --output-csv outputs\dyadic_moments_2m.csv --limit 2000000 --t-max 200 --t-points 801
+python tools\plot_dyadic_moments.py outputs\mu_10m.i8 outputs\dyadic_moments_5m_t500_full.png --output-csv outputs\dyadic_moments_5m_t500_full.csv --limit 5000000 --t-max 500 --t-points 1601 --moments 1,2,3,4,5,6,7,8,9,10 --full-blocks-only
 ```

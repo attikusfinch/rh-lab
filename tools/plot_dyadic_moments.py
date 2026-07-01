@@ -18,11 +18,13 @@ def parse_ints(value: str) -> list[int]:
     return result
 
 
-def dyadic_edges(limit: int, first: int) -> list[tuple[int, int]]:
+def dyadic_edges(limit: int, first: int, full_blocks_only: bool) -> list[tuple[int, int]]:
     edges: list[tuple[int, int]] = []
     y = first
     while y < limit:
         stop = min(2 * y, limit + 1)
+        if full_blocks_only and stop < 2 * y:
+            break
         if stop > y + 1:
             edges.append((y, stop))
         y *= 2
@@ -85,6 +87,7 @@ def main() -> None:
     parser.add_argument("--t-points", type=int, default=801)
     parser.add_argument("--moments", default="1,2,3,4,5,6")
     parser.add_argument("--chunk-size", type=int, default=2048)
+    parser.add_argument("--full-blocks-only", action="store_true")
     args = parser.parse_args()
 
     raw = np.fromfile(args.mu_bin, dtype=np.int8)
@@ -102,7 +105,7 @@ def main() -> None:
     signs = mu[nonzero - 1].astype(np.float64)
     log_values = np.log(nonzero.astype(np.float64))
     t_values = np.linspace(args.t_min, args.t_max, args.t_points)
-    edges = dyadic_edges(limit, args.first)
+    edges = dyadic_edges(limit, args.first, args.full_blocks_only)
 
     rows: list[dict[str, float | int]] = []
     all_normalized: list[np.ndarray] = []

@@ -6,6 +6,7 @@
 *.csv
 *.i8
 *.u32
+*.log
 __pycache__/
 .pytest_cache/
 .venv/
