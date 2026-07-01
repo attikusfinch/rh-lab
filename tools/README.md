@@ -79,4 +79,5 @@ python tools\plot_diagonal_product_energy.py outputs\mu_10m.i8 outputs\diagonal_
 python tools\plot_offdiagonal_kernel.py outputs\mu_10m.i8 outputs\offdiagonal_kernel_8k_t500.png --output-csv outputs\offdiagonal_kernel_8k_t500.csv --max-y 8192 --t-max 500 --t-points 1601 --bin-count 65536
 python tools\plot_offdiagonal_cancellation_sources.py outputs\mu_10m.i8 outputs\offdiagonal_cancellation_sources_8k_t500.png --output-csv outputs\offdiagonal_cancellation_sources_8k_t500.csv --max-y 8192 --t-max 500 --bin-count 65536
 python tools\plot_product_coefficient_autocorr.py outputs\mu_10m.i8 outputs\product_coefficient_autocorr_8k_t500.png --output-csv outputs\product_coefficient_autocorr_8k_t500.csv --max-y 8192 --t-scale 500 --bin-count 65536
+python tools\plot_local_autocorr_bound.py outputs\mu_10m.i8 outputs\local_autocorr_bound_8k.png --output-csv outputs\local_autocorr_bound_8k.csv --max-y 8192 --t-scales 100,200,500,1000,2000 --bin-count 65536
 ```
