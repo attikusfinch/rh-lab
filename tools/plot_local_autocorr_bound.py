@@ -59,6 +59,42 @@ def product_coefficients(
     block_n: np.ndarray,
     block_signs: np.ndarray,
     row_chunk_size: int,
+    aggregation: str,
+    merge_row_chunks: int,
+) -> tuple[np.ndarray, np.ndarray, float]:
+    if aggregation == "full":
+        return product_coefficients_full(block_n, block_signs, row_chunk_size)
+    if aggregation == "incremental":
+        return product_coefficients_incremental(block_n, block_signs, row_chunk_size, merge_row_chunks)
+    raise SystemExit(f"unknown aggregation mode: {aggregation}")
+
+
+def reduce_product_terms(products: np.ndarray, coeffs: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    order = np.argsort(products, kind="mergesort")
+    sorted_products = products[order]
+    sorted_coeffs = coeffs[order].astype(np.int64, copy=False)
+    unique_products, starts = np.unique(sorted_products, return_index=True)
+    coeff_sums = np.add.reduceat(sorted_coeffs, starts)
+    keep = coeff_sums != 0
+    return unique_products[keep], coeff_sums[keep]
+
+
+def merge_product_coefficients(parts: list[tuple[np.ndarray, np.ndarray]]) -> tuple[np.ndarray, np.ndarray]:
+    nonempty = [(products, coeffs) for products, coeffs in parts if products.size > 0]
+    if not nonempty:
+        return np.array([], dtype=np.int64), np.array([], dtype=np.int64)
+    if len(nonempty) == 1:
+        return nonempty[0]
+
+    products = np.concatenate([item[0] for item in nonempty])
+    coeffs = np.concatenate([item[1] for item in nonempty])
+    return reduce_product_terms(products, coeffs)
+
+
+def product_coefficients_full(
+    block_n: np.ndarray,
+    block_signs: np.ndarray,
+    row_chunk_size: int,
 ) -> tuple[np.ndarray, np.ndarray, float]:
     products_parts: list[np.ndarray] = []
     coeff_parts: list[np.ndarray] = []
@@ -72,15 +108,41 @@ def product_coefficients(
 
     products_all = np.concatenate(products_parts)
     coeffs_all = np.concatenate(coeff_parts)
-    order = np.argsort(products_all, kind="mergesort")
-    sorted_products = products_all[order]
-    sorted_coeffs = coeffs_all[order].astype(np.int64)
-    unique_products, starts = np.unique(sorted_products, return_index=True)
-    coeff_sums = np.add.reduceat(sorted_coeffs, starts)
-    keep = coeff_sums != 0
-    coeffs = coeff_sums[keep]
+    unique_products, coeffs = reduce_product_terms(products_all, coeffs_all)
     diagonal_raw = float(np.sum(coeffs.astype(np.float64) ** 2))
-    return unique_products[keep], coeffs, diagonal_raw
+    return unique_products, coeffs, diagonal_raw
+
+
+def product_coefficients_incremental(
+    block_n: np.ndarray,
+    block_signs: np.ndarray,
+    row_chunk_size: int,
+    merge_row_chunks: int,
+) -> tuple[np.ndarray, np.ndarray, float]:
+    if merge_row_chunks <= 0:
+        raise SystemExit("--merge-row-chunks must be positive")
+
+    accumulator_products = np.array([], dtype=np.int64)
+    accumulator_coeffs = np.array([], dtype=np.int64)
+    pending: list[tuple[np.ndarray, np.ndarray]] = []
+
+    for chunk_index, row_start in enumerate(range(0, block_n.size, row_chunk_size), start=1):
+        row_stop = min(row_start + row_chunk_size, block_n.size)
+        products = (block_n[row_start:row_stop, None] * block_n[None, :]).ravel()
+        coeffs = (block_signs[row_start:row_stop, None] * block_signs[None, :]).astype(np.int16).ravel()
+        pending.append(reduce_product_terms(products, coeffs))
+
+        if chunk_index % merge_row_chunks == 0:
+            accumulator_products, accumulator_coeffs = merge_product_coefficients(
+                [(accumulator_products, accumulator_coeffs), *pending]
+            )
+            pending = []
+
+    accumulator_products, accumulator_coeffs = merge_product_coefficients(
+        [(accumulator_products, accumulator_coeffs), *pending]
+    )
+    diagonal_raw = float(np.sum(accumulator_coeffs.astype(np.float64) ** 2))
+    return accumulator_products, accumulator_coeffs, diagonal_raw
 
 
 def next_power_of_two(value: int) -> int:
@@ -118,6 +180,8 @@ def main() -> None:
     parser.add_argument("--bin-count", type=int, default=65536)
     parser.add_argument("--shell-bounds", default="0,1,2,5,10,20,50,inf")
     parser.add_argument("--pair-row-chunk-size", type=int, default=256)
+    parser.add_argument("--aggregation", choices=["full", "incremental"], default="full")
+    parser.add_argument("--merge-row-chunks", type=int, default=8)
     args = parser.parse_args()
 
     raw = np.fromfile(args.mu_bin, dtype=np.int8)
@@ -148,7 +212,13 @@ def main() -> None:
         if block_n.size == 0:
             continue
 
-        products, coeffs, diagonal_raw = product_coefficients(block_n, block_signs, args.pair_row_chunk_size)
+        products, coeffs, diagonal_raw = product_coefficients(
+            block_n,
+            block_signs,
+            args.pair_row_chunk_size,
+            args.aggregation,
+            args.merge_row_chunks,
+        )
         log_products = np.log(products.astype(np.float64))
         edges_log = np.linspace(float(log_products[0]), float(log_products[-1]), args.bin_count + 1)
         delta = float(edges_log[1] - edges_log[0])
@@ -191,6 +261,7 @@ def main() -> None:
                         "scaled_bin_width": t_scale * delta,
                         "block_nonzero_count": int(block_n.size),
                         "unique_product_count": int(products.size),
+                        "aggregation": args.aggregation,
                         "diagonal_4": diagonal_raw / float(start * start),
                         "signed_raw": signed_raw,
                         "unsigned_raw": unsigned_raw,
