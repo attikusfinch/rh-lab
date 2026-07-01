@@ -70,4 +70,5 @@ python tools\plot_dyadic_mobius_blocks.py outputs\mu_10m.i8 outputs\dyadic_mobiu
 python tools\plot_dyadic_t_scan.py outputs\mu_10m.i8 outputs\dyadic_t_scan_2m.png --output-csv outputs\dyadic_t_scan_2m.csv --limit 2000000 --t-max 200 --t-points 801
 python tools\plot_dyadic_t_refine.py outputs\mu_10m.i8 outputs\dyadic_t_refine_2m.png --output-csv outputs\dyadic_t_refine_2m.csv --limit 2000000 --t-max 200 --t-points 801
 python tools\plot_dyadic_large_values.py outputs\mu_10m.i8 outputs\dyadic_large_values_2m.png --output-csv outputs\dyadic_large_values_2m.csv --limit 2000000 --t-max 200 --t-points 801
+python tools\plot_dyadic_smoothness.py outputs\mu_10m.i8 outputs\dyadic_smoothness_2m.png --output-csv outputs\dyadic_smoothness_2m.csv --limit 2000000 --t-max 200 --t-points 801
 ```
