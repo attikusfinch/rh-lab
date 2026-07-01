@@ -75,4 +75,5 @@ python tools\plot_dyadic_moments.py outputs\mu_10m.i8 outputs\dyadic_moments_2m.
 python tools\plot_dyadic_moments.py outputs\mu_10m.i8 outputs\dyadic_moments_5m_t500_full.png --output-csv outputs\dyadic_moments_5m_t500_full.csv --limit 5000000 --t-max 500 --t-points 1601 --moments 1,2,3,4,5,6,7,8,9,10 --full-blocks-only
 python tools\plot_dyadic_uniform_bounds.py outputs\mu_10m.i8 outputs\dyadic_uniform_bounds_5m_t500.png --output-csv outputs\dyadic_uniform_bounds_5m_t500.csv --limit 5000000 --t-max 500 --t-points 1601 --moments 1,2,3,4,5,6,7,8,9,10 --full-blocks-only
 python tools\plot_fourth_moment_structure.py outputs\mu_10m.i8 outputs\fourth_moment_structure_4k_t500.png --output-csv outputs\fourth_moment_structure_4k_t500.csv --max-y 4096 --t-max 500 --t-points 1601
+python tools\plot_diagonal_product_energy.py outputs\mu_10m.i8 outputs\diagonal_product_energy_8k.png --output-csv outputs\diagonal_product_energy_8k.csv --max-y 8192
 ```
