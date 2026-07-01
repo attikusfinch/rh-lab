@@ -159,3 +159,19 @@ X^(rho-s).
 Thus a proof that `F_X(s)` stays bounded as `X -> infinity` for every `Re(s) > 1/2` would rule out zeros to the right of the critical line.
 
 See `rh_smoothed_lemma.md` for the proof-shaped statement.
+
+## Convergence check
+
+For `Re(s) > 1/2`, the smoothed sums should converge to
+
+```text
+1 / zeta(s).
+```
+
+If RH is true, the dominant remaining contour contributions come from zeros on `Re(rho)=1/2`, so near a zero ordinate the error should often decay on the scale
+
+```text
+|F_X(s) - 1/zeta(s)| roughly X^(-(sigma - 1/2)).
+```
+
+This is not a proof, but it is a sharper diagnostic than just watching whether `F_X(s)` grows.
