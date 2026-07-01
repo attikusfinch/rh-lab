@@ -106,6 +106,31 @@ For the new block, `Y = 16384`, the largest tested local ratio is
 T=2000, shell 2..5, ratio = 3.412e-6.
 ```
 
+## Wide T Stress
+
+The scan was also repeated on a wider `T` grid:
+
+```powershell
+python tools\plot_local_autocorr_bound.py outputs\mu_10m.i8 outputs\local_autocorr_bound_16k_wide_t.png --output-csv outputs\local_autocorr_bound_16k_wide_t.csv --first 128 --max-y 16384 --t-scales 50,75,100,150,200,300,500,750,1000,1500,2000,3000,5000 --bin-count 65536 --aggregation incremental --pair-row-chunk-size 512 --merge-row-chunks 4
+```
+
+Worst local shell ratio for each `Y`:
+
+```text
+Y      worst T  shell  max abs(signed)/unsigned
+128    2000     2..5   2.283e-2
+256    5000     0..1   1.351e-2
+512    3000     5..10  5.079e-3
+1024   3000     0..1   1.428e-3
+2048   5000     1..2   3.646e-4
+4096   3000     1..2   5.962e-5
+8192   5000     1..2   1.760e-5
+16384  3000     5..10  4.784e-6
+```
+
+The wider grid raises the worst observed ratios slightly, but the decay trend
+survives. For `Y = 16384`, the worst ratio remains below `5e-6`.
+
 ## Lesson
 
 The local autocorrelation cancellation is not a one-scale artifact. Across

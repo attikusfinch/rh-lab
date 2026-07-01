@@ -81,4 +81,7 @@ python tools\plot_offdiagonal_cancellation_sources.py outputs\mu_10m.i8 outputs\
 python tools\plot_product_coefficient_autocorr.py outputs\mu_10m.i8 outputs\product_coefficient_autocorr_8k_t500.png --output-csv outputs\product_coefficient_autocorr_8k_t500.csv --max-y 8192 --t-scale 500 --bin-count 65536
 python tools\plot_local_autocorr_bound.py outputs\mu_10m.i8 outputs\local_autocorr_bound_8k.png --output-csv outputs\local_autocorr_bound_8k.csv --max-y 8192 --t-scales 100,200,500,1000,2000 --bin-count 65536
 python tools\plot_local_autocorr_bound.py outputs\mu_10m.i8 outputs\local_autocorr_bound_16k.png --output-csv outputs\local_autocorr_bound_16k.csv --first 128 --max-y 16384 --t-scales 100,200,500,1000,2000 --bin-count 65536 --aggregation incremental --pair-row-chunk-size 512 --merge-row-chunks 4
+python tools\plot_local_autocorr_decay.py outputs\local_autocorr_bound_16k.csv outputs\local_autocorr_decay_16k.png --output-csv outputs\local_autocorr_decay_16k.csv --tail-min-y 1024
+python tools\plot_local_autocorr_bound.py outputs\mu_10m.i8 outputs\local_autocorr_bound_16k_wide_t.png --output-csv outputs\local_autocorr_bound_16k_wide_t.csv --first 128 --max-y 16384 --t-scales 50,75,100,150,200,300,500,750,1000,1500,2000,3000,5000 --bin-count 65536 --aggregation incremental --pair-row-chunk-size 512 --merge-row-chunks 4
+python tools\plot_local_autocorr_decay.py outputs\local_autocorr_bound_16k_wide_t.csv outputs\local_autocorr_decay_16k_wide_t.png --output-csv outputs\local_autocorr_decay_16k_wide_t.csv --tail-min-y 1024
 ```
