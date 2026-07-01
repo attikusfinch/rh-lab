@@ -42,4 +42,4 @@ tools\rh_viz.exe 10000000 50000 outputs\rh_viz_10m.csv
 python tools\plot_rh_viz.py outputs\rh_viz_10m.csv outputs\rh_viz_10m.png
 ```
 
-See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, and `outputs/rh_residue_match.md` for the full route.
+See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, and `outputs/rh_residue_subtraction.md` for the full route.
