@@ -8,6 +8,7 @@ Small experimental lab for exploring the Riemann hypothesis through:
 - Mobius Dirichlet sums near zeta-zero ordinates
 - Smoothed Mobius transforms as a zero detector
 - Smoothed convergence checks against `1 / zeta(s)`
+- Dyadic twisted Mobius block cancellation checks
 
 This is not a proof of RH. It is a computational notebook-style project that turns the visual intuition into proof-shaped targets.
 
@@ -42,4 +43,4 @@ tools\rh_viz.exe 10000000 50000 outputs\rh_viz_10m.csv
 python tools\plot_rh_viz.py outputs\rh_viz_10m.csv outputs\rh_viz_10m.png
 ```
 
-See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, and `outputs/rh_residue_subtraction.md` for the full route.
+See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, and `outputs/rh_dyadic_cancellation_target.md` for the full route.
