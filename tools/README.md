@@ -67,4 +67,5 @@ python tools\plot_smoothed_convergence.py outputs\mu_10m.i8 outputs\smoothed_con
 python tools\check_residue_match.py outputs\smoothed_convergence_1m.csv
 python tools\plot_residue_subtraction.py outputs\smoothed_convergence_1m.csv outputs\residue_subtraction_1m.png --output-csv outputs\residue_subtraction_1m.csv
 python tools\plot_dyadic_mobius_blocks.py outputs\mu_10m.i8 outputs\dyadic_mobius_blocks_10m.png --output-csv outputs\dyadic_mobius_blocks_10m.csv
+python tools\plot_dyadic_t_scan.py outputs\mu_10m.i8 outputs\dyadic_t_scan_2m.png --output-csv outputs\dyadic_t_scan_2m.csv --limit 2000000 --t-max 200 --t-points 801
 ```
