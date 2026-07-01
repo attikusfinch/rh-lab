@@ -23,6 +23,7 @@ Small experimental lab for exploring the Riemann hypothesis through:
 - Local autocorrelation bound scans across T scales
 - Decay fits for the local autocorrelation lemma candidate
 - Kernel-weighted off-diagonal cancellation decay checks
+- Product sign-weight decomposition for A_Y(r)
 
 This is not a proof of RH. It is a computational notebook-style project that turns the visual intuition into proof-shaped targets.
 
@@ -57,4 +58,4 @@ tools\rh_viz.exe 10000000 50000 outputs\rh_viz_10m.csv
 python tools\plot_rh_viz.py outputs\rh_viz_10m.csv outputs\rh_viz_10m.png
 ```
 
-See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, `outputs/rh_dyadic_t_refinement.md`, `outputs/rh_dyadic_large_values.md`, `outputs/rh_dyadic_smoothness.md`, `outputs/rh_dyadic_moments.md`, `outputs/rh_uniform_moment_bound.md`, `outputs/rh_fourth_moment_structure.md`, `outputs/rh_diagonal_product_energy.md`, `outputs/rh_offdiagonal_kernel.md`, `outputs/rh_offdiagonal_cancellation_sources.md`, `outputs/rh_product_coefficient_autocorr.md`, `outputs/rh_local_autocorr_bound.md`, `outputs/rh_local_autocorr_decay.md`, and `outputs/rh_kernel_cancellation_decay.md` for the full route.
+See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, `outputs/rh_dyadic_t_refinement.md`, `outputs/rh_dyadic_large_values.md`, `outputs/rh_dyadic_smoothness.md`, `outputs/rh_dyadic_moments.md`, `outputs/rh_uniform_moment_bound.md`, `outputs/rh_fourth_moment_structure.md`, `outputs/rh_diagonal_product_energy.md`, `outputs/rh_offdiagonal_kernel.md`, `outputs/rh_offdiagonal_cancellation_sources.md`, `outputs/rh_product_coefficient_autocorr.md`, `outputs/rh_local_autocorr_bound.md`, `outputs/rh_local_autocorr_decay.md`, `outputs/rh_kernel_cancellation_decay.md`, and `outputs/rh_product_sign_weight_decomposition.md` for the full route.
