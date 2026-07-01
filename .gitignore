@@ -1,0 +1,12 @@
+*.exe
+*.obj
+*.o
+*.pdb
+*.ilk
+*.csv
+*.i8
+*.u32
+__pycache__/
+.pytest_cache/
+.venv/
+venv/
