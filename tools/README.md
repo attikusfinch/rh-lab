@@ -77,4 +77,5 @@ python tools\plot_dyadic_uniform_bounds.py outputs\mu_10m.i8 outputs\dyadic_unif
 python tools\plot_fourth_moment_structure.py outputs\mu_10m.i8 outputs\fourth_moment_structure_4k_t500.png --output-csv outputs\fourth_moment_structure_4k_t500.csv --max-y 4096 --t-max 500 --t-points 1601
 python tools\plot_diagonal_product_energy.py outputs\mu_10m.i8 outputs\diagonal_product_energy_8k.png --output-csv outputs\diagonal_product_energy_8k.csv --max-y 8192
 python tools\plot_offdiagonal_kernel.py outputs\mu_10m.i8 outputs\offdiagonal_kernel_8k_t500.png --output-csv outputs\offdiagonal_kernel_8k_t500.csv --max-y 8192 --t-max 500 --t-points 1601 --bin-count 65536
+python tools\plot_offdiagonal_cancellation_sources.py outputs\mu_10m.i8 outputs\offdiagonal_cancellation_sources_8k_t500.png --output-csv outputs\offdiagonal_cancellation_sources_8k_t500.csv --max-y 8192 --t-max 500 --bin-count 65536
 ```
