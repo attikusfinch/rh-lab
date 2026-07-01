@@ -11,6 +11,7 @@ Small experimental lab for exploring the Riemann hypothesis through:
 - Dyadic twisted Mobius block cancellation checks
 - Grid scans for worst-case dyadic resonance over `t`
 - Adaptive peak refinement for dyadic resonance scans
+- Mean-square and large-values scans for dyadic blocks
 
 This is not a proof of RH. It is a computational notebook-style project that turns the visual intuition into proof-shaped targets.
 
@@ -45,4 +46,4 @@ tools\rh_viz.exe 10000000 50000 outputs\rh_viz_10m.csv
 python tools\plot_rh_viz.py outputs\rh_viz_10m.csv outputs\rh_viz_10m.png
 ```
 
-See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, and `outputs/rh_dyadic_t_refinement.md` for the full route.
+See `tools/README.md`, `outputs/rh_proof_route.md`, `outputs/rh_smoothed_convergence.md`, `outputs/rh_residue_match.md`, `outputs/rh_residue_subtraction.md`, `outputs/rh_contour_remainder.md`, `outputs/rh_dyadic_cancellation_target.md`, `outputs/rh_dyadic_t_scan.md`, `outputs/rh_dyadic_t_refinement.md`, and `outputs/rh_dyadic_large_values.md` for the full route.
